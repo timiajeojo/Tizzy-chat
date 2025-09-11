@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signal Clone</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Header -->
+    <header class="header">
+      <img src="images/user.jpg" alt="Avatar" class="avatar">
+      <h1>Chats</h1>
+      <div class="header-icons">
+        <span>📝</span>
+        <span>⚙️</span>
+      </div>
+    </header>
+
+    <!-- Search -->
+    <div class="search-bar">
+      <input id="search" type="text" placeholder="Search">
+    </div>
+
+    <!-- Chat container -->
+    <div id="chat-list"></div>
+    
+    
+    <div id="chat-screen" style="display: none;">
+  <header class="header"></header>
+  <div class="messages"></div>
+  <div class="chat-input">
+    <input type="text" id="message-input" placeholder="Signal message">
+    <button id="send-btn">➤</button>
+  </div>
+</div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+      <div class="nav-item active">💬 Chats <span class="badge">2</span></div>
+      <div class="nav-item">📞 Calls</div>
+      <div class="nav-item">📸 Stories <span class="badge">4</span></div>
+    </nav>
+  </div>
+
+  <script type = "module" src="main.js"></script>
+</body>
+</html>
