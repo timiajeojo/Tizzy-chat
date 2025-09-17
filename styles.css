@@ -9,3 +9,23 @@ body {
   background: #fff;
   color: #111;
 }
+
+.app {
+  max-width: 450px;
+  margin: auto;
+  border: 1px solid #ddd;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+
+
