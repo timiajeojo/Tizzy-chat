@@ -28,4 +28,17 @@ body {
 }
 
 
+.header .avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+.header h1 {
+  font-size: 20px;
+  flex: 1;
+  text-align: center;
+}
+
+
 
