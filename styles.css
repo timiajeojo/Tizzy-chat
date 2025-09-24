@@ -40,5 +40,26 @@ body {
   text-align: center;
 }
 
+.header-icons span {
+  margin-left: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.new-chat-btn {
+  position: fixed;
+  bottom: 80px; /* above footer */
+  right: 20px;
+  background: #3b82f6; /* Signal blue */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+}
+
 
 
