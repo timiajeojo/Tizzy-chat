@@ -62,4 +62,23 @@ body {
 }
 
 
+.search-bar {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.section-title {
+  font-size: 14px;
+  color: #666;
+  padding: 8px 15px;
+}
+
 
