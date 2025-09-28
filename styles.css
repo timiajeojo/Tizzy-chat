@@ -82,3 +82,34 @@ body {
 }
 
 
+.chat {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-bottom: 1px solid #f2f2f2;
+  position: relative;
+}
+
+.chat-img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.chat-info {
+  flex: 1;
+}
+
+.chat-info h2 {
+  font-size: 16px;
+  margin-bottom: 3px;
+}
+
+.chat-info p {
+  font-size: 13px;
+  color: #666;
+}
+
+
+
