@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stories</title>
+  <link rel="stylesheet" href="stories.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="page-header">
+    <h1>Stories</h1>
+  </header>
+
+  <!-- Your story -->
+  <section class="your-story">
+    <div class="story-bubble add-story">
+      <span>+</span>
+    </div>
+    <p>Your Story</p>
+  </section>
+
+  <!-- Recent stories -->
+  <section class="recent-stories">
+    <h2>Recent</h2>
+    <div class="stories-list" id="stories-list">
+      <!-- Stories will be injected dynamically -->
+    </div>
+  </section>
+
+  <!-- Footer navigation -->
+  <nav class="bottom-nav">
+   <div class="nav-item">💬 Chats <span class="badge">2</span></div>
+   <div class="nav-item" id="calls-tab">📞 Calls</div>
+   <div class="nav-item active">📸 Stories <span class="badge">4</span></div>
+ </nav>
+
+  <script src="stories.js"></script>
+</body>
+</html>

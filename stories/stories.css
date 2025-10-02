@@ -1,0 +1,69 @@
+/* Stories UI */
+.your-story, .recent-stories {
+  padding: 15px;
+}
+
+.your-story {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.story-bubble {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #3b82f6; /* blue border like Signal */
+  background-color: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: #3b82f6;
+}
+
+.add-story {
+  border-style: dashed;
+}
+
+.stories-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding-top: 10px;
+}
+
+.story-bubble-wrapper {
+  text-align: center;
+  width: 70px;
+}
+ 
+ 
+ .bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  border-top: 1px solid #ddd;
+  background: #fafafa;
+}
+
+.bottom-nav .nav-item {
+  text-align: center;
+  flex: 1;
+  font-size: 14px;
+  color: #555;
+  position: relative;
+}
+
+.bottom-nav .nav-item.active {
+  color: #007aff;
+}
+
+.badge {
+  background: #007aff;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+  margin-left: 5px;
+}
