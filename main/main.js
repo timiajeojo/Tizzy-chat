@@ -167,3 +167,213 @@ const chats = [
     ]
   }
 ];
+
+const chatList  = document.getElementById("chat-list");
+const searchInput = document.getElementById("search");
+const chatScreen = document.createElement("div");
+chatScreen.id = "chat-screen";
+chatScreen.style.display = "none";
+document.querySelector(".app").appendChild(chatScreen);
+const headerEl = chatScreen.querySelector("header");
+const messagesEl = chatScreen.querySelector(".messages");
+const inputEl = chatScreen.querySelector("#message-input");
+
+
+function renderChats(filter = "") {
+  chatList.innerHTML = "";
+
+  const pinned = chats.filter(c => c.pinned);
+  const others = chats.filter(c => !c.pinned);
+
+  if (pinned.length) {
+    const title = document.createElement("div");
+    title.className = "section-title";
+    title.textContent = "Pinned";
+    chatList.appendChild(title);
+    pinned.forEach(chat => addChat(chat, filter || ""));
+  }
+
+  if (others.length) {
+    const title = document.createElement("div");
+    title.className = "section-title";
+    title.textContent = "Chats";
+    chatList.appendChild(title);
+    others.forEach(chat => addChat(chat, filter || ""));
+  }
+}
+
+
+//chat dom element 
+function addChat(chat, filter = "") {
+  // TEMP: disable filtering to confirm chats render
+  // if (!chat.name.toLowerCase().includes(filter.toLowerCase())) return;
+
+  const div = document.createElement("div");
+  div.className = "chat";
+
+  div.innerHTML = `
+    <img src="${chat.img}" class="chat-img">
+    <div class="chat-info">
+      <h2>${chat.name}</h2>
+      <p>${chat.message}</p>
+    </div>
+    <span class="time">${chat.time}</span>
+    ${chat.unread ? `<span class="badge">${chat.unread}</span>` : ""}
+  `;
+   div.addEventListener("click", () => openChat(chat));
+  chatList.appendChild(div);
+}
+
+
+// Helper to check if chat is a group chat
+function isGroupChat(chat) {
+  const participants = [...new Set(chat.messages.map(m => m.from))];
+  return participants.length > 2; // more than "You" + 1 other
+}
+
+ // ... imports, renderChats, addChat, et
+
+function isGroupChat(chat) {
+  const participants = [...new Set(chat.messages.map(m => m.from))];
+  return participants.length > 2;
+}
+
+chatScreen.innerHTML = `
+  <header class="header"></header>
+  <div class="messages"></div>
+  <div class="chat-input">
+  <button id="plus-btn">+</button>
+    <input type="text" id="message-input" placeholder="Signal message">
+    <button id="send-btn" onclick= "sendMessage()">➤</button>
+  </div>
+`;
+
+function openChat(chat) {
+  chatList.style.display = "none";
+  searchInput.parentElement.style.display = "none";
+
+  const group = isGroupChat(chat);
+
+  chatScreen.style.display = "flex";
+  const newChatBtn = document.getElementById("new-chat-btn");
+  if (newChatBtn) newChatBtn.style.display = "none";
+window.currentChatId = chat.id;
+
+  chatScreen.innerHTML = `
+    <header class="header">
+      <button id="back-btn">⬅️</button>
+      <img src="${chat.img}" class="avatar">
+      <h1>${chat.name}</h1>
+    </header>
+    <div class="messages">
+      ${chat.messages.map(m => `
+        <div class="message ${m.from === "You" ? "right" : "left"}">
+          ${group && m.from !== "You" ? `<div class="sender">${m.from}</div>` : ""}
+          ${m.text}
+          <span class="time">${m.time}</span>
+        </div>
+      `).join("")}
+    </div>
+    <div class="chat-input">
+      <button id="plus-btn">+</button>
+      <input type="text" id="message-input" placeholder="Signal message">
+      <button id="send-btn">➤</button>
+    </div>
+  `;
+
+  // Back button
+  document.getElementById("back-btn").addEventListener("click", () => {
+    chatScreen.style.display = "none";
+    chatList.style.display = "block";
+    searchInput.parentElement.style.display = "block";
+    if (newChatBtn) newChatBtn.style.display = "block";
+  });
+    
+    
+  // Sending messages
+  
+  const sendBtn = document.getElementById("send-btn");
+  const input = document.getElementById("message-input");
+  const messagesContainer = chatScreen.querySelector(".messages");
+
+  function sendMessage() {
+    const text = input.value.trim();
+    if (!text) return;
+
+    const newMessage = { from: "You", text, time: "Now" };
+
+    const div = document.createElement("div");
+    div.className = "message right";
+    div.innerHTML = `
+      ${newMessage.text}
+      <span class="time">${newMessage.time}</span>
+    `;
+    messagesContainer.appendChild(div);
+
+    input.value = "";
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+
+  sendBtn.addEventListener("click", sendMessage);
+  input.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") sendMessage();
+  });
+}
+
+
+function setupNewChat() {
+    if (!newChatBtn) { console.warn('New chat button not found'); return; }
+    newChatBtn.addEventListener('click', () => {
+      console.log('📝 New chat clicked');
+      const name = prompt('Enter contact name:');
+      if (!name) return;
+      const newChat = { id: Date.now(), name, message: '', time: 'Now', img: 'https://via.placeholder.com/45', pinned: false, unread: 0, messages: [] };
+      chats.unshift(newChat);
+      renderChats();
+    });
+  }
+
+
+document.addEventListener('click', (e) => {
+  if (e.target && e.target.id === 'send-btn') { 
+    const chatScreen = document.getElementById('chat-screen');
+    const input = chatScreen && chatScreen.querySelector('#message-input');
+    if (!input) return 
+    sendMessageFromCurrentChat(input);
+  }
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    const chatScreen = document.getElementById('chat-screen');
+    if (!chatScreen || chatScreen.style.display === 'none') return;
+    const input = chatScreen.querySelector('#message-input');
+    if (input && document.activeElement === input) {
+      e.preventDefault();
+      sendMessageFromCurrentChat(input);
+    }
+  }
+});
+
+function sendMessageFromCurrentChat(inputEl) {
+  const text = inputEl.value.trim();
+  if (!text) { return;
+    const id = window.currentChatId;
+    if (typeof id === 'undefined') {
+      cosole.warn('No CurrentChildId set');
+      return;
+    }
+    const chat = chats.find(c => c.id === id);
+    if (!chat) {
+   
+    }
+    }
+  }
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderChats();
+  setupSearch();
+  setupNewChat();
+})
