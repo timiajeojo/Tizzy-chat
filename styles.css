@@ -242,4 +242,69 @@ body {
 }
 
 
+#chat-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+#chat-screen .messages {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.chat-input {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-top: 1px solid #ddd;
+  background: #fff;
+  gap: 8px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  outline: none;
+  font-size: 14px;
+}
+
+.chat-input button {
+  background: #0a84ff;
+  border: none;
+  color: white;
+  padding: 0 16px;
+  margin-left: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+#plus-btn {
+  background: none;
+  color: #0a84ff;
+  font-weight: bold;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+#send-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0a84ff;
+  color: #fff;
+  padding:  0 16px;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+}
 
