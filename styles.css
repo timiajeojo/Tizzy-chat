@@ -185,5 +185,61 @@ body {
   gap: 8px;
 }
 
+/* Base message bubble */
+.message {
+  max-width: 70%;
+  padding: 10px 14px;
+  border-radius: 18px;
+  font-size: 14px;
+  line-height: 1.4;
+  position: relative;
+  word-wrap: break-word;
+}
+
+/* Incoming (left) */
+.message.left {
+  align-self: flex-start;
+  background: #f1f1f1;
+  color: #000;
+  border-top-left-radius: 4px;
+}
+
+/* Outgoing (right) */
+.message.right {
+  align-self: flex-end;
+  background: #0a84ff; /* Signal blue */
+  color: #fff;
+  border-top-right-radius: 4px;
+}
+
+/* Timestamps */
+.message .time {
+  display: block;
+  font-size: 11px;
+  color: rgba(0,0,0,0.5);
+  margin-top: 4px;
+  text-align: right;
+}
+.message.right .time {
+  color: rgba(255,255,255,0.8);
+} 
+
+/* Sender label for group chats */
+.message .sender {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+/* Incoming sender names (left side) */
+.message.left .sender {
+  color: #0a84ff; /* Signal blue for usernames */
+}
+
+/* Outgoing doesn’t need it, but keep alignment clean */
+.message.right .sender {
+  display: none;
+}
+
 
 
